@@ -1,5 +1,6 @@
 package com.spring.mvc.chapter01_form;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -30,16 +31,16 @@ public class V2C_Ex01 {
 	 *   
 	 *  - String to Date 데이터 형식의 바인딩은 DTO클래스 property위에 @DateTimeFormat(pattern = "yyyy-MM-dd")을 추가하여 매핑한다.
 	 */
-	
 	@PostMapping("/modelAttribute")
-	//public String modelAttribute( ProductDTO productDTO) {
+	//public String modelAttribute(ProductDTO productDTO) {
 	public String modelAttribute(@ModelAttribute ProductDTO productDTO) {
 		
-		System.out.println("/n ModelAttribute \n");
+		System.out.println("\n ModelAttribute \n");
 		System.out.println(productDTO);
 		System.out.println();
 		
-		return "chapter01_form/input";	
+		return "chapter01_form/input";
+		
 	}
 	
 	
@@ -67,9 +68,25 @@ public class V2C_Ex01 {
 		
 	}
 	
+
+	
+	
+	
 	
 	// 참고 DTO List 전송
-	
+	@PostMapping("/DTOList")
+	public String DTOList(@ModelAttribute ProductDTO ProductDTO ) {
+		
+		System.out.println("\n DTO List \n");
+		System.out.println(ProductDTO.getProductList());
+		
+		List<ProductDTO> ProductList = ProductDTO.getProductList();
+		
+		for (ProductDTO temp : ProductList) {
+			System.out.println(temp);
+		}
+		
+		return "redirect:/input";
+	}
 	
 }
-

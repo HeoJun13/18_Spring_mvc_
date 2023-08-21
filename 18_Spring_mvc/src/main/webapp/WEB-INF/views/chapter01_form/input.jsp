@@ -65,22 +65,22 @@
 	<br><hr><br>
      
     <h1>3) @RequestParam</h1>
-	<p><a href="">구매하기(@RequestParam)</a></p>
+	<p><a href="requestParam?productCd=product1&orderQty=3">구매하기(@RequestParam)</a></p>
      
 	<br><hr><br>
      
     <h1>4) HttpServletRequest</h1>
-	<p><a href="">구매하기(HttpServletRequest)</a></p>
+	<p><a href= "httpServletRequest?productCd=product1&orderQty=3">>구매하기(HttpServletRequest)</a></p>
      
 	<br><hr><br>
 	
     <h1>5) @PathVariable</h1>
-	<p><a href="">구매하기(@PathVariable)</a></p>
+	<p><a href="pathVariable/product1/3">구매하기(@PathVariable)</a></p>
 
 	<br><hr><br>
 	
 	<h1>참조) DTO List 전송</h1>
-	<form action="" method="post"> 
+	<form action="DTOList" method="post"> 
 		<table border="1">
 			<tr align="center">
 				<th>productCd</th>

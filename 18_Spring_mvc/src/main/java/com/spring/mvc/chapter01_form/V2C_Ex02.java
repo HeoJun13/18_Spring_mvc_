@@ -1,6 +1,12 @@
 package com.spring.mvc.chapter01_form;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class V2C_Ex02 {
@@ -20,6 +26,18 @@ public class V2C_Ex02 {
 	 *
 	 */
 	
+	@GetMapping("/requestParam")
+	//public String requestParam(String productCd , @RequestParam("orderQty") int orderQty) {
+	public String requestParam(@RequestParam("productCd") String productCd , @RequestParam("orderQty") int orderQty) {
+	//public String requestParam(@RequestParam("productCd") String productCd , @RequestParam("orderQty") int orderQty) {
+		
+		System.out.println("\n @RequestParam \n");
+		System.out.println("pruduct : " + productCd);
+		System.out.println("orderQty : " + orderQty);
+		return "redirect:/input";
+	}
+	
+	
 	
 	/* 
 	 * 	
@@ -29,6 +47,16 @@ public class V2C_Ex02 {
 	 *  - JSP HttpServletRequest과 사용방법이 같다.
 	 * 
 	 */
+	
+	@GetMapping("/httpServletRequest")
+	public String httpServletRequest(HttpServletRequest request) {
+		
+		System.out.println("\n @HttpServletRequest \n");
+		System.out.println("pruduct : " + request.getParameter("productCd"));
+		System.out.println("orderQty : " + Integer.parseInt(request.getParameter("orderQty")));
+		
+		return "redirect:input";
+	}
 	
 	
 	/*
@@ -45,7 +73,19 @@ public class V2C_Ex02 {
 	 *  - 2) 방법은 {}로 패턴을 매칭하여 데이터에 접근 한다. 
 	 * */
 	
+	@GetMapping("/pathVariable/{productCd}/{orderQty}")
+	public String pathVariable(@PathVariable String productCd ,
+			   @PathVariable  int orderQty) {
+
+System.out.println("\n @PathVariable \n");
+System.out.println("productCd : " + productCd);
+System.out.println("orderQty : " + orderQty);
+
+return "redirect:/input";
+
+}
 	
 	
 }
+
 

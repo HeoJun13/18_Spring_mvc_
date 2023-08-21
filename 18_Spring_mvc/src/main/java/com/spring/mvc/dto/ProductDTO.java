@@ -13,7 +13,7 @@ public class ProductDTO {
 	private String productNm;
 	private int price;
 	private int deliveryPrice;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")  // 설명
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date enrollDt;
 	private String brandCd;
 	
