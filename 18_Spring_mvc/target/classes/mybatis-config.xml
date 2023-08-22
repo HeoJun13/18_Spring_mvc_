@@ -3,4 +3,17 @@
 
 <configuration>
 
+	<!-- 
+	
+		<settings>
+			<setting name="mapUnderscoreToCamelCase" value="true"/>
+		</settings>
+		
+		-  POJO Property(Camel Case), Table Column(Snake Case)형태로 데이타가 설계된 전제하에 
+		   Mybatis Mapper에서 반환 데이터의 resultMap을 사용하지 않아도 POJO의 프로퍼티와 테이블의 컬럼명을 바인딩 한다. 
+	
+	-->
+
+
+
 </configuration>
