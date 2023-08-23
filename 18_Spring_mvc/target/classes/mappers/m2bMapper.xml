@@ -12,15 +12,12 @@
 	</select>
 	
 	<!-- DTO List 반환 예시2 -->
-	
 	<select id="ex02" resultType="com.spring.mvc.dto.BrandDTO">
-		SELECT
+		SELECT 
 				*
 		FROM
 				BRAND
-	
 	</select>
-
 
 	<!-- DTO 반환 예시1 -->
 	<select id="ex03" resultType="com.spring.mvc.dto.ProductDTO">
@@ -28,19 +25,20 @@
 				*
 		FROM
 				PRODUCT
-		WHERE		
-				PRODUCT_CD=1
+		WHERE
+				PRODUCT_CD = 1
 	</select>
 	
 	<!-- DTO 반환 예시2 -->
 	<select id="ex04" resultType="com.spring.mvc.dto.BrandDTO">
 		SELECT
 				*
-		FROM	
+		FROM
 				BRAND
 		WHERE
-				BRAND_CD = 'b1'		
+				BRAND_CD = 'b1'
 	</select>
+	
 	
 	<!-- 단일데이터 반환 예시1 -->
 	<select id="ex05" resultType="int">
@@ -48,9 +46,7 @@
 				COUNT(*)
 		FROM
 				PRODUCT
-	
 	</select>
-
 	
 	<!-- 단일데이터 반환 예시2 -->
 	<select id="ex06" resultType="double">
@@ -58,7 +54,6 @@
 				AVG(PRICE)
 		FROM
 				PRODUCT
-	
 	</select>
 	
 	<!-- 단일데이터 반환 예시3 -->
@@ -67,9 +62,10 @@
 				PRODUCT_NM
 		FROM
 				PRODUCT
-		WHERE		
-				PRODUCT_CD = 1	
+		WHERE
+				PRODUCT_CD = 1
 	</select>
+
 
 	<!--  
 
@@ -89,6 +85,7 @@
 					PRICE < 1000000
 		]]>
 	</select>
+	
 	
 	<!-- 
 	
@@ -110,15 +107,13 @@
 	<!-- 테이블 컬럼과 자바 프로퍼티 바인딩 예시1 -->
 	<select id="ex09" resultType="hashmap">
 		SELECT
-				PRODUCT_CD   		AS productCd,
-				PRICE		 		AS price,
-				PRICE * 0.1  		As tax,
-				PRICE + PRICE * 0.1 As totalPrice
+				PRODUCT_CD				AS productCd,
+				PRICE					AS price,
+				PRICE * 0.1				AS tax,
+				PRICE + PRICE * 0.1 	AS totalPrice
 		FROM
 				PRODUCT
-	
 	</select>
-	
 	
 	<!--  
 	
@@ -129,7 +124,7 @@
        		<result property="productName" column="PRODUCT_NAME"/>
     	</resultMap>
     	
-    	<select id = ""  resultType="getProduct">						<< 식별id , resultMap의 id
+    	<select id = ""  resultMap="getProduct">						<< 식별id , resultMap의 id
     		SELECT
 				PRODUCT_CODE
 				PRODUCT_NAME
@@ -137,14 +132,49 @@
 				PRODUCT		
     	</select>
 
-		> resultType은 resultMap의 id와 매핑된다.
+		> resultMap은 resultMap태그의 id와 매핑된다.
 		
 	-->
 
-	
+	<resultMap type="hashmap" id="productMap">
+		<result column="PRODUCT_CD"    property="productCd"/>
+		<result column="PRICE"         property="price"/>
+		<result column="TAX"      	   property="tax"/>
+		<result column="TOTAL_PRICE"   property="totalPrice"/>
+	</resultMap>
 	
 	<!-- 테이블 컬럼과 자바 프로퍼티 바인딩 예시2 -->
+	<select id="ex10" resultMap="productMap">
+		SELECT
+				PRODUCT_CD				AS PRODUCT_CD,
+				PRICE					AS PRICE,
+				PRICE * 0.1				AS TAX,
+				PRICE + PRICE * 0.1 	AS TOTAL_PRICE
+		FROM
+				PRODUCT
+	</select>
 	
+<resultMap type="hashmap" id="joinMap">
+		<result column="PRODUCT_CD" property="proudctCd"/>
+		<result column="PRODUCT_NM" property="productNm"/>
+		<result column="BRAND_CD"   property="brandCd"/>
+		<result column="BRAND_NM"   property="brandNm"/>
+		<result column="ACTIVE_YN"  property="activeYn"/>
+	</resultMap> 
+	
+	<!-- 테이블 컬럼과 자바 프로퍼티 바인딩 예시3 -->
+	<select id="ex11" resultMap="joinMap">
+		SELECT
+				P.PRODUCT_CD    AS PRODUCT_CD,
+				P.PRODUCT_NM	AS PRODUCT_NM,
+				B.BRAND_CD		AS BRAND_CD,
+				B.BRAND_NM		AS BRAND_NM,
+				B.ACTIVE_YN		AS ACTIVE_YN
+		FROM
+				PRODUCT P
+			 INNER JOIN BRAND B
+			         ON P.BRAND_CD = B.BRAND_CD
+	</select>
 	
 	<!-- 테이블 컬럼과 자바 프로퍼티 바인딩 예시3 -->
 
