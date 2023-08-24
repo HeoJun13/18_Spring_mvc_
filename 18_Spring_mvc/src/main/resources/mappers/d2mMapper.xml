@@ -127,12 +127,15 @@
 	</select>
 	
 	<!-- Map 전송예시3 -->
-	<select id="">
+	<select id="sample09" parameterType="hashmap" resultType="hashmap">
 		SELECT
 				*
 		FROM
-				
-	
+				PRODUCT P
+			INNER JOIN BRAND B
+						ON P.BRAND_CD = B.BRAND_CD
+						AND P.PRICE > #{price}
+						AND B.ACTIVE_YN != #{activeYn}
 	</select>
 	
 	

@@ -151,8 +151,10 @@ public class D2M {
 		searchMap.put("activeYn","N");
 		searchMap.put("price", 1000000);
 		
-		sqlSession.selectList("d2m.sample09" , searchMap);
-		
+		List<Map<String, Object>> searchMapList = sqlSession.selectList("d2m.sample09" , searchMap);
+		for (Map<String, Object> map : searchMapList) {
+			System.out.println(map);
+		}
 	}
 	
 }
